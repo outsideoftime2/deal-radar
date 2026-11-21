@@ -1,0 +1,21 @@
+{
+  "updated_at": "2026-11-21T18:59:56+00:00",
+  "coverage": {
+    "target": {
+      "status": "no collector sources configured",
+      "pages_checked": 0,
+      "issues": []
+    },
+    "kohls": {
+      "status": "no collector sources configured",
+      "pages_checked": 0,
+      "issues": []
+    },
+    "walmart": {
+      "status": "no collector sources configured",
+      "pages_checked": 0,
+      "issues": []
+    }
+  },
+  "deals": []
+}
