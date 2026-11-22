@@ -1,81 +1,124 @@
-"""Conservative deal collector: only publish explicitly dated, source-linked offers.
-
-Configure permitted product pages in sources.json. Retailer blocking is reported, not bypassed.
-Manual records in manual_deals.json must carry a source URL and verification timestamp.
+"""Free, conservative collector. Publishes retailer-announced promotions and optionally
+reads explicitly configured, permitted product pages with dated JSON-LD offers.
+Does not claim exhaustive coverage or bypass retailer access controls.
 """
-import json, pathlib, datetime, urllib.request, urllib.parse, re, html
+import datetime as dt
+import hashlib
+import html
 from html.parser import HTMLParser
-ROOT=pathlib.Path(__file__).resolve().parent
-NOW=datetime.datetime.now(datetime.timezone.utc)
-TODAY=NOW.date()
-STORES=('target','kohls','walmart')
-HOSTS={'target':('target.com',),'kohls':('kohls.com',),'walmart':('walmart.com',)}
+import json
+from pathlib import Path
+import urllib.parse
+import urllib.request
+
+ROOT = Path(__file__).resolve().parent
+NOW = dt.datetime.now(dt.timezone.utc)
+TODAY = NOW.date()
+STORES = ('target', 'kohls', 'walmart')
+HOSTS = {'target':'target.com', 'kohls':'kohls.com', 'walmart':'walmart.com'}
+OFFICIAL = {
+ 'target': ('https://corporate.target.com/press/release/2026/11/target-announces-black-friday-deals-and-giveaways-to-help-families-save-big-on-gifts-they-ll-love-to', '2026-11-17'),
+ 'kohls': ('https://s204.q4cdn.com/271435555/files/doc_news/Now-Arriving-at-The-North-Kohls-November-Holiday-Savings-Events-2026.pdf', '2026-10-30'),
+ 'walmart': ('https://corporate.walmart.com/askwalmart/when-are-walmarts-2026-black-friday-and-cyber-monday-deals', None)
+}
+
 class Scripts(HTMLParser):
- def __init__(self): super().__init__();self.in_json=False;self.buf='';self.scripts=[]
+ def __init__(self):
+  super().__init__(); self.capture=False; self.buffer=''; self.scripts=[]
  def handle_starttag(self,tag,attrs):
-  if tag=='script' and dict(attrs).get('type','').lower()=='application/ld+json':self.in_json=True;self.buf=''
+  if tag=='script' and dict(attrs).get('type','').lower()=='application/ld+json':
+   self.capture=True; self.buffer=''
  def handle_data(self,data):
-  if self.in_json:self.buf+=data
+  if self.capture:self.buffer+=data
  def handle_endtag(self,tag):
-  if tag=='script' and self.in_json:self.scripts.append(self.buf);self.in_json=False
+  if tag=='script' and self.capture:
+   self.scripts.append(self.buffer); self.capture=False
 
 def allowed(url,store):
  try:
-  u=urllib.parse.urlparse(url);return u.scheme=='https' and any(u.hostname==h or u.hostname.endswith('.'+h) for h in HOSTS[store])
- except Exception:return False
+  p=urllib.parse.urlparse(url)
+  return p.scheme=='https' and (p.hostname==HOSTS[store] or p.hostname.endswith('.'+HOSTS[store]))
+ except (ValueError,TypeError,AttributeError):return False
 
-def walk(x):
- if isinstance(x,dict):
-  yield x
-  for v in x.values():yield from walk(v)
- elif isinstance(x,list):
-  for v in x:yield from walk(v)
+def walk(obj):
+ if isinstance(obj,dict):
+  yield obj
+  for v in obj.values():yield from walk(v)
+ elif isinstance(obj,list):
+  for v in obj:yield from walk(v)
 
-def fetch(url):
- req=urllib.request.Request(url,headers={'User-Agent':'FamilyDealRadar/1.0 (public product information; no authentication)','Accept':'text/html'})
- with urllib.request.urlopen(req,timeout=15) as res:return res.read(2_000_000).decode('utf-8','replace')
+def date(s):
+ try:return dt.date.fromisoformat(str(s)[:10])
+ except (ValueError,TypeError):return None
 
-def collect(url,store):
- page=Scripts();page.feed(fetch(url))
- for s in page.scripts:
-  try:obj=json.loads(html.unescape(s))
-  except Exception:continue
+def stable_id(store,url,title,start):
+ return store+'-'+hashlib.sha256((url+'|'+title+'|'+start).encode()).hexdigest()[:16]
+
+def dated_products(url,store):
+ request=urllib.request.Request(url,headers={'User-Agent':'FamilyDealRadar/1.1 (public information)','Accept':'text/html'})
+ with urllib.request.urlopen(request,timeout=12) as r:
+  content=r.read(2_000_000).decode('utf-8','replace')
+ parser=Scripts();parser.feed(content)
+ for raw in parser.scripts:
+  try:obj=json.loads(raw)
+  except (ValueError,TypeError):continue
   for item in walk(obj):
-   typ=item.get('@type',[]);typ=[typ] if isinstance(typ,str) else typ
-   if 'Product' not in typ:continue
-   offers=item.get('offers') or {};offers=offers[0] if isinstance(offers,list) and offers else offers
-   if not isinstance(offers,dict):continue
-   # No inference of sale status from a product's ordinary price.
-   start=offers.get('validFrom');end=offers.get('priceValidUntil')
-   if not start or not end or not offers.get('price'):continue
-   start=str(start)[:10];end=str(end)[:10]
-   try:datetime.date.fromisoformat(start);datetime.date.fromisoformat(end)
-   except ValueError:continue
-   if end<TODAY.isoformat():continue
-   yield {'id':f'{store}-{abs(hash(url))}', 'retailer':store,'title':str(item.get('name') or 'Product offer'), 'description':str(item.get('description') or '')[:400], 'category':str(item.get('category') or 'Other')[:80], 'sale_price':str(offers['price']), 'regular_price':None,'start_date':start,'end_date':end,'url':url,'cities':['all'],'availability':'Check retailer for local stock and pricing','verified':True,'verified_at':NOW.isoformat()}
+   kind=item.get('@type',[]);kind=[kind] if isinstance(kind,str) else kind
+   if not isinstance(kind,list) or 'Product' not in kind:continue
+   offers=item.get('offers',[]);offers=offers if isinstance(offers,list) else [offers]
+   for offer in offers:
+    if not isinstance(offer,dict):continue
+    start=date(offer.get('validFrom'));end=date(offer.get('priceValidUntil'))
+    if not start or not end or end<TODAY or end<start or offer.get('price') is None:continue
+    title=str(item.get('name') or '').strip()
+    if not title:continue
+    yield {'id':stable_id(store,url,title,start.isoformat()),'retailer':store,'title':title,
+     'description':str(item.get('description') or '')[:300], 'category':str(item.get('category') or 'Other')[:80],
+     'sale_price':str(offer['price']),'regular_price':None,'start_date':start.isoformat(),
+     'end_date':end.isoformat(),'url':url,'cities':['all'],
+     'availability':'Confirm local pricing and stock at retailer', 'verified':True,
+     'verified_at':NOW.isoformat(), 'source_type':'dated_product_metadata'}
+
+def load_json(name,default):
+ path=ROOT/name
+ return json.loads(path.read_text(encoding='utf-8')) if path.exists() else default
 
 def main():
- sources=json.loads((ROOT/'sources.json').read_text());manual=json.loads((ROOT/'manual_deals.json').read_text());deals=[];coverage={}
+ deals=[];coverage={}
+ # These records are based on dated retailer announcements. They are NOT re-verified live.
+ for row in load_json('official_promotions.json',[]):
+  store=row.get('retailer');start=date(row.get('start_date'));end=date(row.get('end_date'))
+  if store not in STORES or not start or not end or end<TODAY or end<start:continue
+  url,published=OFFICIAL[store];title=row['title']
+  deals.append({**row,'id':stable_id(store,url,title,start.isoformat()),'url':url,
+   'sale_price':None,'regular_price':None,'cities':['all'],
+   'description':row.get('description') or 'Retailer-announced promotion; see official source for eligible items and terms.',
+   'availability':'National announcement; check your local store', 'verified':True,
+   'verified_at':published,'source_type':'retailer_announcement'})
+ sources=load_json('sources.json',{});manual=load_json('manual_deals.json',[])
  for store in STORES:
-  urls=sources.get(store,[]);issues=[];n=0
+  urls=sources.get(store,[]);issues=[];count=0
   for url in urls:
-   if not allowed(url,store):issues.append('invalid or off-domain URL');continue
+   if not isinstance(url,str) or not allowed(url,store):issues.append('invalid or off-domain URL');continue
    try:
-    items=list(collect(url,store));deals.extend(items);n+=len(items)
-    if not items:issues.append('page has no explicit dated structured offers')
+    found=list(dated_products(url,store));deals.extend(found);count+=len(found)
+    if not found:issues.append('no dated product metadata found')
    except Exception as e:issues.append(type(e).__name__)
-  coverage[store]={'status':f'{n} dated offers extracted; {len(issues)} source issues' if urls else 'no collector sources configured','pages_checked':len(urls),'issues':issues[:10]}
+  announced=sum(d['retailer']==store and d['source_type']=='retailer_announcement' for d in deals)
+  coverage[store]={'status':f'{announced} announced promotions; {count} dated product offers; not exhaustive',
+   'pages_checked':len(urls),'issues':issues[:10]}
  for d in manual:
   store=d.get('retailer');url=d.get('url','')
-  if store not in STORES or not allowed(url,store) or not d.get('verified_at') or not d.get('start_date') or not d.get('end_date'):continue
-  try:
-   verified=datetime.datetime.fromisoformat(d['verified_at'].replace('Z','+00:00'));end=datetime.date.fromisoformat(d['end_date']);datetime.date.fromisoformat(d['start_date'])
-   if verified.tzinfo is None or NOW-verified>datetime.timedelta(days=3) or end<TODAY:continue
-  except (ValueError,TypeError):continue
-  if d.get('title') and d.get('cities') and d.get('verified') is True:deals.append(d)
- # Keep deterministic unique retailer + product + dates
- unique={ (d['retailer'],d['url'],d['start_date'],d['end_date']):d for d in deals }
- payload={'updated_at':NOW.isoformat(timespec='seconds'),'coverage':coverage,'deals':list(unique.values())}
- (ROOT/'deals.json').write_text(json.dumps(payload,indent=2,ensure_ascii=False)+'\n')
- print(f"Published {len(unique)} verifiable offers; coverage is not exhaustive")
+  if store not in STORES or not allowed(url,store) or d.get('verified') is not True:continue
+  start=date(d.get('start_date'));end=date(d.get('end_date'))
+  try:verified=dt.datetime.fromisoformat(d['verified_at'].replace('Z','+00:00'))
+  except (KeyError,ValueError,TypeError,AttributeError):continue
+  if not start or not end or end<TODAY or verified.tzinfo is None or not dt.timedelta(0)<=NOW-verified<=dt.timedelta(days=3):continue
+  if not d.get('title') or not isinstance(d.get('cities'),list):continue
+  d=dict(d);d['id']=stable_id(store,url,d['title'],start.isoformat());d['source_type']='manual_verified'
+  deals.append(d)
+ unique={(d['retailer'],d['url'],d['title'],d['start_date'],d['end_date']):d for d in deals}
+ result={'updated_at':NOW.isoformat(timespec='seconds'),'coverage':coverage,'deals':sorted(unique.values(),key=lambda d:(d['start_date'],d['retailer'],d['title']))}
+ (ROOT/'deals.json').write_text(json.dumps(result,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
+ print('Published',len(unique),'announced/verified offers; catalog coverage is not exhaustive')
 if __name__=='__main__':main()

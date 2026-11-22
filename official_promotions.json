@@ -1,0 +1,21 @@
+[
+  {"retailer":"target","title":"Up to 50% off select headphones and speakers","category":"Electronics","start_date":"2026-11-22","end_date":"2026-11-29"},
+  {"retailer":"target","title":"Save up to $100 on select Apple devices","category":"Electronics","start_date":"2026-11-22","end_date":"2026-11-29"},
+  {"retailer":"target","title":"Up to 50% off select laptops and printers","category":"Electronics","start_date":"2026-11-22","end_date":"2026-11-29"},
+  {"retailer":"target","title":"Up to 30% off select TVs, soundbars and streaming devices","category":"Electronics","start_date":"2026-11-22","end_date":"2026-11-29"},
+  {"retailer":"target","title":"Up to 50% off select toys","category":"Toys","start_date":"2026-11-22","end_date":"2026-11-29"},
+  {"retailer":"target","title":"Buy one, get one 50% off select toys","category":"Toys","start_date":"2026-11-22","end_date":"2026-11-29"},
+  {"retailer":"target","title":"40% off family performance apparel","category":"Clothing","start_date":"2026-11-22","end_date":"2026-11-29"},
+  {"retailer":"target","title":"40% off shoes and slippers","category":"Clothing","start_date":"2026-11-22","end_date":"2026-11-29"},
+  {"retailer":"target","title":"Up to 50% off select small appliances and cookware","category":"Home","start_date":"2026-11-22","end_date":"2026-11-29"},
+  {"retailer":"target","title":"Up to 50% off select floorcare","category":"Home","start_date":"2026-11-22","end_date":"2026-11-29"},
+  {"retailer":"target","title":"Up to 50% off apparel and accessories (select styles)","category":"Clothing","start_date":"2026-11-26","end_date":"2026-11-29"},
+  {"retailer":"target","title":"40% off beauty and health gift sets","category":"Beauty","start_date":"2026-11-26","end_date":"2026-11-29"},
+  {"retailer":"target","title":"50% off decorative pillows and throws","category":"Home","start_date":"2026-11-26","end_date":"2026-11-29"},
+  {"retailer":"target","title":"40% off holiday trees","category":"Holiday","start_date":"2026-11-26","end_date":"2026-11-29"},
+  {"retailer":"target","title":"50% off pajamas — Black Friday Deal of the Day","category":"Clothing","start_date":"2026-11-27","end_date":"2026-11-27"},
+  {"retailer":"kohls","title":"Black Friday Week — thousands of advertised deals","category":"Storewide event","start_date":"2026-11-22","end_date":"2026-11-28","description":"Event announcement, not an individual item price. See retailer for eligible products and daily offers."},
+  {"retailer":"kohls","title":"Cyber Deals event","category":"Storewide event","start_date":"2026-11-29","end_date":"2026-11-30","description":"Event announcement; product prices are not included in this record."},
+  {"retailer":"walmart","title":"Black Friday Deals event — online starts Nov 23; stores Nov 27","category":"Storewide event","start_date":"2026-11-23","end_date":"2026-11-29","description":"Walmart+ may receive early access to select drops; individual product prices not included."},
+  {"retailer":"walmart","title":"Cyber Monday event","category":"Storewide event","start_date":"2026-11-30","end_date":"2026-12-02","description":"Event announcement; individual product prices not included."}
+]

@@ -1,21 +1,383 @@
 {
-  "updated_at": "2026-11-22T00:19:35+00:00",
+  "updated_at": "2026-11-21T20:16:17+00:00",
   "coverage": {
     "target": {
-      "status": "no collector sources configured",
+      "status": "15 announced promotions; 0 dated product offers; not exhaustive",
       "pages_checked": 0,
       "issues": []
     },
     "kohls": {
-      "status": "no collector sources configured",
+      "status": "2 announced promotions; 0 dated product offers; not exhaustive",
       "pages_checked": 0,
       "issues": []
     },
     "walmart": {
-      "status": "no collector sources configured",
+      "status": "2 announced promotions; 0 dated product offers; not exhaustive",
       "pages_checked": 0,
       "issues": []
     }
   },
-  "deals": []
+  "deals": [
+    {
+      "retailer": "kohls",
+      "title": "Black Friday Week — thousands of advertised deals",
+      "category": "Storewide event",
+      "start_date": "2026-11-22",
+      "end_date": "2026-11-28",
+      "description": "Event announcement, not an individual item price. See retailer for eligible products and daily offers.",
+      "id": "kohls-ef00b38a3e9d8f77",
+      "url": "https://s204.q4cdn.com/271435555/files/doc_news/Now-Arriving-at-The-North-Kohls-November-Holiday-Savings-Events-2026.pdf",
+      "sale_price": null,
+      "regular_price": null,
+      "cities": [
+        "all"
+      ],
+      "availability": "National announcement; check your local store",
+      "verified": true,
+      "verified_at": "2026-10-30",
+      "source_type": "retailer_announcement"
+    },
+    {
+      "retailer": "target",
+      "title": "40% off family performance apparel",
+      "category": "Clothing",
+      "start_date": "2026-11-22",
+      "end_date": "2026-11-29",
+      "id": "target-a2e36db2100ea72b",
+      "url": "https://corporate.target.com/press/release/2026/11/target-announces-black-friday-deals-and-giveaways-to-help-families-save-big-on-gifts-they-ll-love-to",
+      "sale_price": null,
+      "regular_price": null,
+      "cities": [
+        "all"
+      ],
+      "description": "Retailer-announced promotion; see official source for eligible items and terms.",
+      "availability": "National announcement; check your local store",
+      "verified": true,
+      "verified_at": "2026-11-17",
+      "source_type": "retailer_announcement"
+    },
+    {
+      "retailer": "target",
+      "title": "40% off shoes and slippers",
+      "category": "Clothing",
+      "start_date": "2026-11-22",
+      "end_date": "2026-11-29",
+      "id": "target-44426dbc8c42d387",
+      "url": "https://corporate.target.com/press/release/2026/11/target-announces-black-friday-deals-and-giveaways-to-help-families-save-big-on-gifts-they-ll-love-to",
+      "sale_price": null,
+      "regular_price": null,
+      "cities": [
+        "all"
+      ],
+      "description": "Retailer-announced promotion; see official source for eligible items and terms.",
+      "availability": "National announcement; check your local store",
+      "verified": true,
+      "verified_at": "2026-11-17",
+      "source_type": "retailer_announcement"
+    },
+    {
+      "retailer": "target",
+      "title": "Buy one, get one 50% off select toys",
+      "category": "Toys",
+      "start_date": "2026-11-22",
+      "end_date": "2026-11-29",
+      "id": "target-91507d1e465503ec",
+      "url": "https://corporate.target.com/press/release/2026/11/target-announces-black-friday-deals-and-giveaways-to-help-families-save-big-on-gifts-they-ll-love-to",
+      "sale_price": null,
+      "regular_price": null,
+      "cities": [
+        "all"
+      ],
+      "description": "Retailer-announced promotion; see official source for eligible items and terms.",
+      "availability": "National announcement; check your local store",
+      "verified": true,
+      "verified_at": "2026-11-17",
+      "source_type": "retailer_announcement"
+    },
+    {
+      "retailer": "target",
+      "title": "Save up to $100 on select Apple devices",
+      "category": "Electronics",
+      "start_date": "2026-11-22",
+      "end_date": "2026-11-29",
+      "id": "target-73ac99cc5b08396a",
+      "url": "https://corporate.target.com/press/release/2026/11/target-announces-black-friday-deals-and-giveaways-to-help-families-save-big-on-gifts-they-ll-love-to",
+      "sale_price": null,
+      "regular_price": null,
+      "cities": [
+        "all"
+      ],
+      "description": "Retailer-announced promotion; see official source for eligible items and terms.",
+      "availability": "National announcement; check your local store",
+      "verified": true,
+      "verified_at": "2026-11-17",
+      "source_type": "retailer_announcement"
+    },
+    {
+      "retailer": "target",
+      "title": "Up to 30% off select TVs, soundbars and streaming devices",
+      "category": "Electronics",
+      "start_date": "2026-11-22",
+      "end_date": "2026-11-29",
+      "id": "target-2821034aa39f79a4",
+      "url": "https://corporate.target.com/press/release/2026/11/target-announces-black-friday-deals-and-giveaways-to-help-families-save-big-on-gifts-they-ll-love-to",
+      "sale_price": null,
+      "regular_price": null,
+      "cities": [
+        "all"
+      ],
+      "description": "Retailer-announced promotion; see official source for eligible items and terms.",
+      "availability": "National announcement; check your local store",
+      "verified": true,
+      "verified_at": "2026-11-17",
+      "source_type": "retailer_announcement"
+    },
+    {
+      "retailer": "target",
+      "title": "Up to 50% off select floorcare",
+      "category": "Home",
+      "start_date": "2026-11-22",
+      "end_date": "2026-11-29",
+      "id": "target-a94ac60a35eb33de",
+      "url": "https://corporate.target.com/press/release/2026/11/target-announces-black-friday-deals-and-giveaways-to-help-families-save-big-on-gifts-they-ll-love-to",
+      "sale_price": null,
+      "regular_price": null,
+      "cities": [
+        "all"
+      ],
+      "description": "Retailer-announced promotion; see official source for eligible items and terms.",
+      "availability": "National announcement; check your local store",
+      "verified": true,
+      "verified_at": "2026-11-17",
+      "source_type": "retailer_announcement"
+    },
+    {
+      "retailer": "target",
+      "title": "Up to 50% off select headphones and speakers",
+      "category": "Electronics",
+      "start_date": "2026-11-22",
+      "end_date": "2026-11-29",
+      "id": "target-0a84115904e51a02",
+      "url": "https://corporate.target.com/press/release/2026/11/target-announces-black-friday-deals-and-giveaways-to-help-families-save-big-on-gifts-they-ll-love-to",
+      "sale_price": null,
+      "regular_price": null,
+      "cities": [
+        "all"
+      ],
+      "description": "Retailer-announced promotion; see official source for eligible items and terms.",
+      "availability": "National announcement; check your local store",
+      "verified": true,
+      "verified_at": "2026-11-17",
+      "source_type": "retailer_announcement"
+    },
+    {
+      "retailer": "target",
+      "title": "Up to 50% off select laptops and printers",
+      "category": "Electronics",
+      "start_date": "2026-11-22",
+      "end_date": "2026-11-29",
+      "id": "target-d4776a608e4a5f95",
+      "url": "https://corporate.target.com/press/release/2026/11/target-announces-black-friday-deals-and-giveaways-to-help-families-save-big-on-gifts-they-ll-love-to",
+      "sale_price": null,
+      "regular_price": null,
+      "cities": [
+        "all"
+      ],
+      "description": "Retailer-announced promotion; see official source for eligible items and terms.",
+      "availability": "National announcement; check your local store",
+      "verified": true,
+      "verified_at": "2026-11-17",
+      "source_type": "retailer_announcement"
+    },
+    {
+      "retailer": "target",
+      "title": "Up to 50% off select small appliances and cookware",
+      "category": "Home",
+      "start_date": "2026-11-22",
+      "end_date": "2026-11-29",
+      "id": "target-6701afd839835b89",
+      "url": "https://corporate.target.com/press/release/2026/11/target-announces-black-friday-deals-and-giveaways-to-help-families-save-big-on-gifts-they-ll-love-to",
+      "sale_price": null,
+      "regular_price": null,
+      "cities": [
+        "all"
+      ],
+      "description": "Retailer-announced promotion; see official source for eligible items and terms.",
+      "availability": "National announcement; check your local store",
+      "verified": true,
+      "verified_at": "2026-11-17",
+      "source_type": "retailer_announcement"
+    },
+    {
+      "retailer": "target",
+      "title": "Up to 50% off select toys",
+      "category": "Toys",
+      "start_date": "2026-11-22",
+      "end_date": "2026-11-29",
+      "id": "target-51df066d7b46e334",
+      "url": "https://corporate.target.com/press/release/2026/11/target-announces-black-friday-deals-and-giveaways-to-help-families-save-big-on-gifts-they-ll-love-to",
+      "sale_price": null,
+      "regular_price": null,
+      "cities": [
+        "all"
+      ],
+      "description": "Retailer-announced promotion; see official source for eligible items and terms.",
+      "availability": "National announcement; check your local store",
+      "verified": true,
+      "verified_at": "2026-11-17",
+      "source_type": "retailer_announcement"
+    },
+    {
+      "retailer": "walmart",
+      "title": "Black Friday Deals event — online starts Nov 23; stores Nov 27",
+      "category": "Storewide event",
+      "start_date": "2026-11-23",
+      "end_date": "2026-11-29",
+      "description": "Walmart+ may receive early access to select drops; individual product prices not included.",
+      "id": "walmart-c30639990391f6f3",
+      "url": "https://corporate.walmart.com/askwalmart/when-are-walmarts-2026-black-friday-and-cyber-monday-deals",
+      "sale_price": null,
+      "regular_price": null,
+      "cities": [
+        "all"
+      ],
+      "availability": "National announcement; check your local store",
+      "verified": true,
+      "verified_at": null,
+      "source_type": "retailer_announcement"
+    },
+    {
+      "retailer": "target",
+      "title": "40% off beauty and health gift sets",
+      "category": "Beauty",
+      "start_date": "2026-11-26",
+      "end_date": "2026-11-29",
+      "id": "target-55c5eae745313856",
+      "url": "https://corporate.target.com/press/release/2026/11/target-announces-black-friday-deals-and-giveaways-to-help-families-save-big-on-gifts-they-ll-love-to",
+      "sale_price": null,
+      "regular_price": null,
+      "cities": [
+        "all"
+      ],
+      "description": "Retailer-announced promotion; see official source for eligible items and terms.",
+      "availability": "National announcement; check your local store",
+      "verified": true,
+      "verified_at": "2026-11-17",
+      "source_type": "retailer_announcement"
+    },
+    {
+      "retailer": "target",
+      "title": "40% off holiday trees",
+      "category": "Holiday",
+      "start_date": "2026-11-26",
+      "end_date": "2026-11-29",
+      "id": "target-9739e0283ecb1b73",
+      "url": "https://corporate.target.com/press/release/2026/11/target-announces-black-friday-deals-and-giveaways-to-help-families-save-big-on-gifts-they-ll-love-to",
+      "sale_price": null,
+      "regular_price": null,
+      "cities": [
+        "all"
+      ],
+      "description": "Retailer-announced promotion; see official source for eligible items and terms.",
+      "availability": "National announcement; check your local store",
+      "verified": true,
+      "verified_at": "2026-11-17",
+      "source_type": "retailer_announcement"
+    },
+    {
+      "retailer": "target",
+      "title": "50% off decorative pillows and throws",
+      "category": "Home",
+      "start_date": "2026-11-26",
+      "end_date": "2026-11-29",
+      "id": "target-80fac6aea3429a6a",
+      "url": "https://corporate.target.com/press/release/2026/11/target-announces-black-friday-deals-and-giveaways-to-help-families-save-big-on-gifts-they-ll-love-to",
+      "sale_price": null,
+      "regular_price": null,
+      "cities": [
+        "all"
+      ],
+      "description": "Retailer-announced promotion; see official source for eligible items and terms.",
+      "availability": "National announcement; check your local store",
+      "verified": true,
+      "verified_at": "2026-11-17",
+      "source_type": "retailer_announcement"
+    },
+    {
+      "retailer": "target",
+      "title": "Up to 50% off apparel and accessories (select styles)",
+      "category": "Clothing",
+      "start_date": "2026-11-26",
+      "end_date": "2026-11-29",
+      "id": "target-52443e40063257cd",
+      "url": "https://corporate.target.com/press/release/2026/11/target-announces-black-friday-deals-and-giveaways-to-help-families-save-big-on-gifts-they-ll-love-to",
+      "sale_price": null,
+      "regular_price": null,
+      "cities": [
+        "all"
+      ],
+      "description": "Retailer-announced promotion; see official source for eligible items and terms.",
+      "availability": "National announcement; check your local store",
+      "verified": true,
+      "verified_at": "2026-11-17",
+      "source_type": "retailer_announcement"
+    },
+    {
+      "retailer": "target",
+      "title": "50% off pajamas — Black Friday Deal of the Day",
+      "category": "Clothing",
+      "start_date": "2026-11-27",
+      "end_date": "2026-11-27",
+      "id": "target-5805392827169bd9",
+      "url": "https://corporate.target.com/press/release/2026/11/target-announces-black-friday-deals-and-giveaways-to-help-families-save-big-on-gifts-they-ll-love-to",
+      "sale_price": null,
+      "regular_price": null,
+      "cities": [
+        "all"
+      ],
+      "description": "Retailer-announced promotion; see official source for eligible items and terms.",
+      "availability": "National announcement; check your local store",
+      "verified": true,
+      "verified_at": "2026-11-17",
+      "source_type": "retailer_announcement"
+    },
+    {
+      "retailer": "kohls",
+      "title": "Cyber Deals event",
+      "category": "Storewide event",
+      "start_date": "2026-11-29",
+      "end_date": "2026-11-30",
+      "description": "Event announcement; product prices are not included in this record.",
+      "id": "kohls-a1ca5089469f63de",
+      "url": "https://s204.q4cdn.com/271435555/files/doc_news/Now-Arriving-at-The-North-Kohls-November-Holiday-Savings-Events-2026.pdf",
+      "sale_price": null,
+      "regular_price": null,
+      "cities": [
+        "all"
+      ],
+      "availability": "National announcement; check your local store",
+      "verified": true,
+      "verified_at": "2026-10-30",
+      "source_type": "retailer_announcement"
+    },
+    {
+      "retailer": "walmart",
+      "title": "Cyber Monday event",
+      "category": "Storewide event",
+      "start_date": "2026-11-30",
+      "end_date": "2026-12-02",
+      "description": "Event announcement; individual product prices not included.",
+      "id": "walmart-9af4259e745ed41d",
+      "url": "https://corporate.walmart.com/askwalmart/when-are-walmarts-2026-black-friday-and-cyber-monday-deals",
+      "sale_price": null,
+      "regular_price": null,
+      "cities": [
+        "all"
+      ],
+      "availability": "National announcement; check your local store",
+      "verified": true,
+      "verified_at": null,
+      "source_type": "retailer_announcement"
+    }
+  ]
 }
