@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-27T13:50:23+00:00",
+  "updated_at": "2026-11-28T00:02:11+00:00",
   "coverage": {
     "target": {
-      "status": "15 announced promotions; 0 dated product offers; not exhaustive",
+      "status": "14 announced promotions; 0 dated product offers; not exhaustive",
       "pages_checked": 0,
       "issues": []
     },
@@ -310,25 +310,6 @@
       "start_date": "2026-11-26",
       "end_date": "2026-11-29",
       "id": "target-52443e40063257cd",
-      "url": "https://corporate.target.com/press/release/2026/11/target-announces-black-friday-deals-and-giveaways-to-help-families-save-big-on-gifts-they-ll-love-to",
-      "sale_price": null,
-      "regular_price": null,
-      "cities": [
-        "all"
-      ],
-      "description": "Retailer-announced promotion; see official source for eligible items and terms.",
-      "availability": "National announcement; check your local store",
-      "verified": true,
-      "verified_at": "2026-11-17",
-      "source_type": "retailer_announcement"
-    },
-    {
-      "retailer": "target",
-      "title": "50% off pajamas — Black Friday Deal of the Day",
-      "category": "Clothing",
-      "start_date": "2026-11-27",
-      "end_date": "2026-11-27",
-      "id": "target-5805392827169bd9",
       "url": "https://corporate.target.com/press/release/2026/11/target-announces-black-friday-deals-and-giveaways-to-help-families-save-big-on-gifts-they-ll-love-to",
       "sale_price": null,
       "regular_price": null,
